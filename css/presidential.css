@@ -246,6 +246,53 @@ body {
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
+/* ---------- Brand-teal Hero (homepage) ---------- */
+.hero--brand {
+  background: var(--teal);
+  color: var(--obsidian);
+}
+.hero--brand .hero__brand-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(10,10,10,0.25) 0%, transparent 60%),
+    linear-gradient(180deg, var(--teal) 0%, #47b4b0 100%);
+}
+.hero--brand .hero__content { position: relative; z-index: 2; }
+.hero__crest {
+  display: block;
+  width: min(520px, 78%);
+  margin: 0 auto 44px;
+  filter: drop-shadow(0 24px 48px rgba(10, 10, 10, 0.22)) drop-shadow(0 4px 12px rgba(10, 10, 10, 0.14));
+  animation: crest-in 1.2s var(--ease) both;
+}
+@keyframes crest-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.hero__eyebrow--on-teal { color: rgba(10, 10, 10, 0.62); }
+.hero__title--on-teal { color: var(--obsidian); }
+.hero__title--on-teal em { color: var(--ivory); font-style: italic; }
+.hero__sub--on-teal { color: rgba(10, 10, 10, 0.72); }
+.hero__scroll--on-teal { color: rgba(10, 10, 10, 0.6); }
+
+/* Buttons tuned for teal background */
+.btn--brand-dark {
+  background: var(--obsidian); color: var(--ivory); border-color: var(--obsidian);
+}
+.btn--brand-dark:hover { background: var(--graphite); }
+.btn--brand-outline {
+  background: transparent; color: var(--obsidian); border-color: var(--obsidian);
+}
+.btn--brand-outline:hover { background: var(--obsidian); color: var(--teal); }
+
+/* Nav tuned for teal hero */
+.nav--brand {
+  background: rgba(88, 201, 197, 0.6);
+  border-bottom-color: rgba(10, 10, 10, 0.14);
+  color: var(--obsidian);
+}
+
 /* ---------- Editorial blocks ---------- */
 .editorial { display: grid; gap: 56px; align-items: center; }
 @media (min-width: 900px) { .editorial { grid-template-columns: 1fr 1fr; gap: 10vw; } }

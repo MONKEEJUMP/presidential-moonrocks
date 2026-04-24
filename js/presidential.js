@@ -27,10 +27,11 @@
   const nav = document.querySelector(".nav");
   if (nav) {
     const darkByDefault = nav.classList.contains("nav--dark");
+    const brandByDefault = nav.classList.contains("nav--brand");
     const onScroll = () => {
-      if (darkByDefault) {
-        nav.classList.toggle("nav--dark", window.scrollY < 60);
-      }
+      const atTop = window.scrollY < 60;
+      if (darkByDefault) nav.classList.toggle("nav--dark", atTop);
+      if (brandByDefault) nav.classList.toggle("nav--brand", atTop);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
