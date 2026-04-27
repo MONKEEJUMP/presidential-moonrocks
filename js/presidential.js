@@ -3,11 +3,25 @@
 (function () {
   "use strict";
 
+  // ---------- Always start at the top on initial load ----------
+  // iOS Chrome / Safari sometimes restore a prior scroll position; force top.
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (!window.location.hash) window.scrollTo(0, 0);
+  window.addEventListener("load", () => {
+    if (!window.location.hash) window.scrollTo(0, 0);
+  });
+
   // ---------- Age gate ----------
   const gate = document.querySelector("[data-gate]");
   if (gate) {
     const ok = sessionStorage.getItem("prx-verified") === "1";
-    if (ok) gate.setAttribute("hidden", "");
+    if (ok) {
+      gate.setAttribute("hidden", "");
+    } else {
+      // Lock background scroll while the gate is visible
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    }
     gate.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-gate-action]");
       if (!btn) return;
@@ -16,7 +30,12 @@
         sessionStorage.setItem("prx-verified", "1");
         gate.style.transition = "opacity .6s ease";
         gate.style.opacity = "0";
-        setTimeout(() => gate.setAttribute("hidden", ""), 620);
+        setTimeout(() => {
+          gate.setAttribute("hidden", "");
+          document.documentElement.style.overflow = "";
+          document.body.style.overflow = "";
+          window.scrollTo(0, 0);
+        }, 620);
       } else {
         window.location.href = "https://www.google.com";
       }

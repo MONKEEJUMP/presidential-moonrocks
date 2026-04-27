@@ -203,11 +203,13 @@ body {
 
 /* ---------- Hero ---------- */
 .hero {
-  position: relative; min-height: 100vh;
+  position: relative;
+  min-height: 100vh;        /* fallback for old browsers */
+  min-height: 100svh;       /* small-viewport-height: stable across iOS Safari/Chrome address-bar changes */
   display: grid; place-items: center;
   background: var(--obsidian); color: var(--bone);
   overflow: hidden;
-  padding-top: 88px; /* clear the fixed nav so the crest never tucks under it */
+  padding-top: 88px;        /* clear the fixed nav so the crest never tucks under it */
   padding-bottom: 60px;
 }
 .hero__bg {
@@ -381,8 +383,11 @@ body {
 /* ---------- Age gate ---------- */
 .gate {
   position: fixed; inset: 0; z-index: 200;
+  height: 100vh;            /* fallback */
+  height: 100dvh;           /* full dynamic viewport on mobile */
   background: var(--obsidian) url("../assets/img/california-mono.jpg") center/cover no-repeat;
   display: grid; place-items: center; color: var(--bone);
+  overflow: hidden;
 }
 .gate::before { content: ""; position: absolute; inset: 0; background: rgba(10, 10, 10, 0.78); }
 .gate__inner { position: relative; z-index: 2; text-align: center; padding: var(--gutter); max-width: 640px; }
